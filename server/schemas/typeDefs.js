@@ -12,8 +12,22 @@ type Auth {
     user: User
 }
 
+type JobPost {
+    _id: ID!
+    title: String
+    openPositions: Int
+    description: String
+    datePosted: String
+    minSalary: Int
+    maxSalary: Int
+    skillSet: [String]
+    workExperience: String
+    recruiter: User
+}
+
 type Query {
     me: User
+    jobPostings(keyword: String!) : [JobPost]
 }
 
 type Mutation {

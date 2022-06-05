@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, JobPost } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -11,6 +11,15 @@ const resolvers = {
                 });
             }
             throw new AuthenticationError("Please login!");
+        },
+
+        // Get job listings which include the keyword in the 'title' or 'description' fields.
+        jobPostings: async (parent, { keyword }) => {
+            // Regex used to find the keyword and 'i' is for case insensitivity
+            const regex = new RegExp(keyword, "i");
+            return await JobPost.find({
+                $or: [{ title: regex }, { description: regex }],
+            }).populate('recruiter');
         }
 
     },
