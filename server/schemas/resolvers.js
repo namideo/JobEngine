@@ -10,17 +10,17 @@ const resolvers = {
                     _id: context.user._id
                 });
             }
-            throw new AuthenticationError("Please login!");
+            throw new AuthenticationError("You need to be logged in!");
         },
 
-        // Get job listings which include the keyword in the 'title' or 'description' fields.
+        // Get job posts which include the keyword in the 'title' or 'description' fields.
         jobPostings: async (parent, { keyword }) => {
             // Regex used to find the keyword and 'i' is for case insensitivity
             const regex = new RegExp(keyword, "i");
             return await JobPost.find({
                 $or: [{ title: regex }, { description: regex }],
             }).populate('recruiter');
-        }
+        },
 
     },
     Mutation: {
@@ -45,6 +45,18 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+
+        // Create a new job post
+        addJobPost: async (parent, { input }, context) => {
+            if(context.user){
+                const jobPost = await JobPost.create({
+                    ...input,
+                    recruiter : context.user._id
+                });
+                return jobPost;
+            }
+            throw new AuthenticationError("You need to be logged in!");
+        }
     }
 };
 
