@@ -1,4 +1,4 @@
-const { User, JobPost } = require('../models');
+const { User, JobPost, Application } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -11,6 +11,19 @@ const resolvers = {
                 });
             }
             throw new AuthenticationError("You need to be logged in!");
+        },
+
+        // Get a job post by Id
+        jobPosting: async (parent, { jobId }, context) => {
+            if (context.user) {
+                return await JobPost.findOne({
+                    _id: jobId
+                }).populate('recruiter').populate('applications').populate({
+                    path: 'applications',
+                    populate: 'applicant' 
+                });
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
 
         // Get job posts which include the keyword in the 'title' or 'description' fields.
@@ -48,12 +61,35 @@ const resolvers = {
 
         // Create a new job post
         addJobPost: async (parent, { input }, context) => {
-            if(context.user){
+            if (context.user) {
                 const jobPost = await JobPost.create({
                     ...input,
-                    recruiter : context.user._id
+                    recruiter: context.user._id
                 });
                 return jobPost;
+            }
+            throw new AuthenticationError("You need to be logged in!");
+        },
+
+        // Create a new job application
+        addApplication: async (parent, args, context) => {
+            if (context.user) {
+                const application = await Application.create({
+                    contactInfo: args.contactInfo,
+                    notes: args.notes,
+                    joiningDate: args.joiningDate,
+                    applicant: context.user._id
+                });
+                await JobPost.findOneAndUpdate(
+                    { _id: args.jobId },
+                    { $addToSet: { applications: application } },
+                    {
+                        new: true,
+                        runValidators: true,
+                    }
+                );
+
+                return application;
             }
             throw new AuthenticationError("You need to be logged in!");
         }
