@@ -6,6 +6,7 @@ query me {
         _id
         username
         email
+        role
     }
 }
 `;
