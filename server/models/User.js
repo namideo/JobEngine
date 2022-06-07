@@ -18,6 +18,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      required: true,
+    },
+    skills: {
+      type: [String]
+    },
   },
   // set this to use virtual below
   {

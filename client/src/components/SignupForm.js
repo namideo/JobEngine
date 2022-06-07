@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert,ButtonGroup } from 'react-bootstrap';
 
 // import { createUser } from '../utils/API';
 import { useMutation } from '@apollo/client';
@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', role:'' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -18,6 +18,7 @@ const SignupForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -38,7 +39,7 @@ const SignupForm = () => {
         variables: { ...userFormData }
       });
 
-      Auth.login(data.addUser.token);
+      Auth.login(data.addUser);
 
     } catch (err) {
       console.error(err);
@@ -60,6 +61,11 @@ const SignupForm = () => {
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your signup!
         </Alert>
+
+        <ButtonGroup size="lg" className="mb-2">
+          <Button className="px-2 mr-5" variant="" name='role' onClick={handleInputChange} value="employer">I am an Employer</Button>
+          <Button className="px-2" variant="" name='role' onClick={handleInputChange} value="seeker">I am Job Seeker</Button>
+        </ButtonGroup>
 
         <Form.Group>
           <Form.Label htmlFor='username'>Username</Form.Label>

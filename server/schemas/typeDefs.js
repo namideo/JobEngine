@@ -5,6 +5,7 @@ type User {
     _id: ID!
     username: String!
     email: String!
+    role: String!
 }
 
 type Auth {
@@ -53,7 +54,7 @@ type Query {
 
 type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, role: String!): Auth
     addJobPost(input: jobInput): JobPost
     addApplication(jobId: ID!, contactInfo: String!, notes: String, joiningDate: String): Application
 }`;
