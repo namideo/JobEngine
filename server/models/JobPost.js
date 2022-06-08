@@ -35,12 +35,12 @@ const jobPostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    // applications: [
-    //     {
-    //         type: Schema.Types.ObjectId,
-    //         ref: 'Application',
-    //     },
-    // ]
+    applications: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Application',
+        },
+    ]
 });
 
 const JobPost = model('JobPost', jobPostSchema);

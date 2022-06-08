@@ -24,6 +24,15 @@ type JobPost {
     skillSet: [String]
     workExperience: String
     recruiter: User
+    applications: [Application]
+}
+
+type Application {
+    _id: ID!
+    contactInfo: String!
+    notes: String
+    joiningDate: String
+    applicant: User
 }
 
 input jobInput {
@@ -39,13 +48,15 @@ input jobInput {
 
 type Query {
     me: User
-    jobPostings(keyword: String!) : [JobPost]
+    jobPostings(keyword: String!): [JobPost]
+    jobPosting(jobId: ID!): JobPost
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, role: String!): Auth
     addJobPost(input: jobInput): JobPost
+    addApplication(jobId: ID!, contactInfo: String!, notes: String, joiningDate: String): Application
 }`;
 
 module.exports = typeDefs;
