@@ -28,3 +28,20 @@ mutation login($email: String!, $password: String!) {
     }
 }
 `;
+
+export const POST_JOB = gql`
+mutation addJobPost($input: jobInput) {
+    addJobPost(input: $input) {
+        _id
+        title
+        openPositions
+        description
+        datePosted
+        minSalary
+        maxSalary
+        skillSet
+        workExperience
+    }
+}
+`;
+
