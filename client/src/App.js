@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 
 import Navbar from './components/Navbar';
+import JobPostForm from './pages/JobPostForm';
 
 // The apollo client provides authentication by using the following 'Header' method
 // createHttpLink returns a new instance of ApolloLink
@@ -35,6 +36,10 @@ function App() {
       <>
         <Navbar />
         <Routes>
+        <Route 
+            path='/postJob'
+            element={<JobPostForm />}
+          />
           <Route 
             path='*'
             element={<h1 className='display-2'>Welcome!</h1>}

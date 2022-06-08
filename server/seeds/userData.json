@@ -1,0 +1,33 @@
+[
+    {
+      "username": "Brian Kernighan",
+      "email": "bkernighan@test.com",
+      "password": "password01",
+      "role":"employer"
+    },
+    {
+      "username": "Max Kanat-Alexander",
+      "email": "mkanatalexander@test.com",
+      "password": "password02",
+      "role":"employer"
+    },
+    {
+      "username": "Lucy Ted",
+      "email": "lucy@test.com",
+      "password": "password03",
+      "role":"seeker"
+    },
+    {
+
+      "username": "Kent Beck",
+      "email": "kbeck@test.com",
+      "password": "password04",
+      "role":"seeker"
+    },
+    {
+      "username": "Edward V. Berard",
+      "email": "evberard@test.com",
+      "password": "password05",
+      "role":"seeker"
+    }
+]
