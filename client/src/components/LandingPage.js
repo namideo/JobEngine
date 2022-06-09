@@ -5,7 +5,6 @@ import SearchForm from './SearchForm';
 
 import { GET_JOBPOSTINGS } from '../utils/queries';
 
-import Hero from '../images/hero.jpeg'
 import image from '../images/Image2.jpeg'
 
 const LandingPage = () => {
