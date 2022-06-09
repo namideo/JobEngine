@@ -15,6 +15,7 @@ type Auth {
 
 type JobPost {
     _id: ID!
+    companyName: String!
     title: String!
     openPositions: Int
     description: String!
@@ -36,6 +37,7 @@ type Application {
 }
 
 input jobInput {
+    companyName: String!
     title: String!
     openPositions: Int
     description: String!
