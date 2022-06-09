@@ -33,6 +33,7 @@ export const POST_JOB = gql`
 mutation addJobPost($input: jobInput) {
     addJobPost(input: $input) {
         _id
+        companyName
         title
         openPositions
         description
