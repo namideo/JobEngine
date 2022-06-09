@@ -2,8 +2,8 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { GET_JOBPOSTINGS } from '../utils/queries';
+import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
-import Card from './Card';
 
 
 function SearchResults() {
@@ -17,34 +17,30 @@ function SearchResults() {
 
       const jobs = data?.jobPostings || [];
 
-      
-
-  // const SearchResults = ({ jobPostings }) => {
-  //       if (!jobPostings.length) {
-  //         return <h3>No Jobs Found</h3>;
-  //       }
-
 
     return (
 
-        <div className='Results'>
-          Job results
+  <div className='Results'>
+          <p className="jobResults"><strong>Job results</strong></p>
 
     <div>
-      <h3>{}</h3>
       {jobs &&
         jobs.map((job) => (
-          <div key={job._id} className="card mb-3">
-            <h4 className="card-header bg-primary p-2 m-0">
-              {job.title}
-            </h4>
+          <div key={job._id} className="card mb-5">
+            <div className="card-header">
+            <Link
+                  className="btn btn-primary btn-block btn-squared"
+                  to={`/JobPage/${job._id}`}
+                >
+                  Apply Now!
+            </Link>
+            </div>
             <div className="card-body bg-light p-2">
-              <p>Description: {job.description}</p>
+              <h5><strong>{job.title}</strong></h5>
+              <br></br>
+              <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
+              <p>{job.description}</p>
               <p>Open Positions: {job.openPositions}</p>
-              <p>Skill Set: {job.skillSet}</p>
-              <p>Required Experience: {job.workExperience}</p>
-              <p>Min Salary: {job.minSalary}</p>
-              <p>Max Salary: {job.maxSalary}</p>
 
             </div>
             <div className="card-footer">
@@ -55,6 +51,8 @@ function SearchResults() {
           </div>
         ))}
     </div>
+
+    
           
           </div>
 

@@ -25,4 +25,29 @@ query jobPostings ($keyword: String!){
         skillSet
         workExperience
     }
-}`;
+
+
+}
+`;
+
+export const GET_JOB_ID = gql`
+query jobPostings ($jobId: ID!) {
+    jobPostings(jobId: $jobId) {
+        _id
+        title
+        openPositions
+        description
+        datePosted
+        minSalary
+        maxSalary
+        skillSet
+        workExperience
+        recruiter{
+            username
+            email
+        }
+    }
+
+
+}
+`;
