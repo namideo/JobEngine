@@ -5,6 +5,9 @@ import { setContext } from '@apollo/client/link/context';
 
 import Navbar from './components/Navbar';
 import JobPostForm from './pages/JobPostForm';
+import LandingPage from './components/LandingPage';
+import SearchResults from './components/SearchResults';
+
 
 // The apollo client provides authentication by using the following 'Header' method
 // createHttpLink returns a new instance of ApolloLink
@@ -35,6 +38,8 @@ function App() {
     <Router>
       <>
         <Navbar />
+        
+
         <Routes>
         <Route 
             path='/postJob'
@@ -42,8 +47,12 @@ function App() {
           />
           <Route 
             path='*'
-            element={<h1 className='display-2'>Welcome!</h1>}
+            element={<LandingPage />}
           />
+          <Route 
+          path="/searchResults/:keyword" 
+          element={<SearchResults />} 
+        />
         </Routes>
       </>
     </Router>
