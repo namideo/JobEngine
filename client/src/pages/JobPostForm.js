@@ -46,6 +46,17 @@ const JobPostForm = () => {
       <>
         <Form noValidate onSubmit={handleFormSubmit}>
         <Form.Group>
+          <Form.Label htmlFor='companyName'>Company Name</Form.Label>
+          <Form.Control
+            type='text'
+            name='companyName'
+            onChange={handleInputChange}
+            value={jobFormData.companyName}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group>
           <Form.Label htmlFor='title'>Title</Form.Label>
           <Form.Control
             type='text'

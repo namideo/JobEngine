@@ -15,6 +15,7 @@ export const GET_JOBPOSTINGS = gql`
 query jobPostings ($keyword: String!){
     jobPostings(keyword: $keyword) {
         _id
+        companyName
         title
         openPositions
         description

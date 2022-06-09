@@ -2,6 +2,10 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const jobPostSchema = new Schema({
+    companyName: {
+        type: String,
+        required: true,
+    },
     title: {
         type: String,
         required: true,
