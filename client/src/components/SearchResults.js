@@ -5,7 +5,6 @@ import { GET_JOBPOSTINGS } from '../utils/queries';
 import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
 
-
 function SearchResults() {
 
       const { keyword } = useParams();
@@ -13,10 +12,13 @@ function SearchResults() {
       const { loading, data } = useQuery(GET_JOBPOSTINGS, {
         variables: { keyword: keyword },
       });
-      console.log(data);
+      // console.log(data);
 
       const jobs = data?.jobPostings || [];
 
+      if (loading) {
+        return <h2>LOADING...</h2>;
+      }
 
     return (
 
@@ -32,12 +34,13 @@ function SearchResults() {
                   className="btn btn-primary btn-block btn-squared"
                   to={`/JobPage/${job._id}`}
                 >
-                  Apply Now!
+                  Details
             </Link>
             </div>
             <div className="card-body bg-light p-2">
               <h5><strong>{job.title}</strong></h5>
               <br></br>
+              <p>Company: {job.companyName}</p>
               <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
               <p>{job.description}</p>
               <p>Open Positions: {job.openPositions}</p>
@@ -45,7 +48,7 @@ function SearchResults() {
             </div>
             <div className="card-footer">
               <span style={{ fontSize: '1rem' }}>
-                Job posted at: {job.datePosted}
+                Posted on: {job.datePosted}
               </span>
             </div>
           </div>
