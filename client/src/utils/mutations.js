@@ -46,3 +46,14 @@ mutation addJobPost($input: jobInput) {
 }
 `;
 
+export const APPLY_JOB = gql`
+mutation addApplication($jobId: ID!, $contactInfo: String!, $notes: String, $joiningDate: String) {
+    addApplication(jobId: $jobId, contactInfo: $contactInfo, notes: $notes, joiningDate: $joiningDate) {
+        _id
+        contactInfo
+        notes
+        joiningDate
+    }
+}
+`;
+

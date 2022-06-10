@@ -31,9 +31,10 @@ query jobPostings ($keyword: String!){
 `;
 
 export const GET_JOB_ID = gql`
-query jobPostings ($jobId: ID!) {
-    jobPostings(jobId: $jobId) {
+query jobPosting ($jobId: ID!) {
+    jobPosting (jobId: $jobId) {
         _id
+        companyName
         title
         openPositions
         description

@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 
 const JobPostForm = () => {
 
-  const [jobFormData, setJobFormData] = useState({title: '', openPositions: '', description: '', minSalary: '', maxSalary: '', skillSet: '', workExperience: ''});
+  const [jobFormData, setJobFormData] = useState({companyName: '', title: '', openPositions: '', description: '', minSalary: '', maxSalary: '', skillSet: '', workExperience: ''});
 
   const [addJobPost, {error, data}] = useMutation(POST_JOB);
   
@@ -34,12 +34,13 @@ const JobPostForm = () => {
           input: { ...jobFormData, ["openPositions"]: parseInt(jobFormData.openPositions), ["minSalary"]: parseInt(jobFormData.minSalary), ["maxSalary"]: parseInt(jobFormData.maxSalary) },
          }
       });      
+      window.location.assign('/');
     } catch (err) {
       console.error(err);
     }
 
     setJobFormData({
-      title: '', openPositions: '', description: '', minSalary: '', maxSalary: '', skillSet: '', workExperience: ''
+      companyName: '', title: '', openPositions: '', description: '', minSalary: '', maxSalary: '', skillSet: '', workExperience: ''
     });
   };
     return (
@@ -81,7 +82,7 @@ const JobPostForm = () => {
           <Form.Label htmlFor='description'>Description</Form.Label>
           <Form.Control
             as="textarea" 
-            rows={3}
+            rows={5}
             name='description'
             onChange={handleInputChange}
             value={jobFormData.description}

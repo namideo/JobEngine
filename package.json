@@ -14,5 +14,10 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "react-datepicker": "^4.8.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.1.3"
   }
 }
