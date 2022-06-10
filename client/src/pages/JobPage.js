@@ -48,7 +48,7 @@ const JobPage = () => {
             </div>
             <div className="card-footer">
               <span style={{ fontSize: '1rem' }}>
-                Job posted at: {job.datePosted}
+                Posted on: {job.datePosted}
               </span>
             </div>
 
