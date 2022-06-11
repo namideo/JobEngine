@@ -32,6 +32,16 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
+  getUserInfo() {
+    // Retrieves the user info from localStorage
+    return JSON.parse(localStorage.getItem('userinfo'));
+  }
+
+  isEmployer() {
+    // Retrieves the user info from localStorage
+    return JSON.parse(localStorage.getItem('userinfo')).role === 'employer';
+  }
+
   login(userData) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', userData.token);

@@ -44,8 +44,88 @@ query jobPosting ($jobId: ID!) {
         skillSet
         workExperience
         recruiter{
+            _id
             username
             email
+        }
+        applications{
+            _id
+            contactInfo
+            notes
+            joiningDate
+            applicant{
+                _id
+                username
+                email
+            }
+        }
+    }
+
+
+}
+`;
+
+export const GET_JOBS_POSTED_BY_USER = gql`
+query getJobsPostedByUser {
+    getJobsPostedByUser  {
+        _id
+        companyName
+        title
+        openPositions
+        description
+        datePosted
+        minSalary
+        maxSalary
+        skillSet
+        workExperience
+        recruiter{
+            username
+            email
+        }
+        applications{
+            _id
+            contactInfo
+            notes
+            joiningDate
+            applicant{
+                _id
+                username
+                email
+            }
+        }
+    }
+
+
+}
+`;
+
+export const GET_JOBS_APPLIED_BY_USER = gql`
+query getJobsAppliedByUser {
+    getJobsAppliedByUser {
+        _id
+        companyName
+        title
+        openPositions
+        description
+        datePosted
+        minSalary
+        maxSalary
+        skillSet
+        workExperience
+        recruiter{
+            username
+            email
+        }
+        applications{
+            _id
+            contactInfo
+            notes
+            joiningDate
+            applicant{
+                _id
+                username
+                email
+            }
         }
     }
 

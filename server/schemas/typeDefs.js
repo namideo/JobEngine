@@ -52,6 +52,8 @@ type Query {
     me: User
     jobPostings(keyword: String!): [JobPost]
     jobPosting(jobId: ID!): JobPost
+    getJobsPostedByUser : [JobPost]
+    getJobsAppliedByUser : [JobPost]
 }
 
 type Mutation {
@@ -59,6 +61,8 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!, role: String!): Auth
     addJobPost(input: jobInput): JobPost
     addApplication(jobId: ID!, contactInfo: String!, notes: String, joiningDate: String): Application
+    editJobPost(id: ID!, openPositions: Int): JobPost
+    removeJobPost(jobId: ID!): JobPost
 }`;
 
 module.exports = typeDefs;

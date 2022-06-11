@@ -57,3 +57,36 @@ mutation addApplication($jobId: ID!, $contactInfo: String!, $notes: String, $joi
 }
 `;
 
+export const UPDATE_JOB = gql`
+mutation updateJob($jobId: ID!, $openPositions: Int!) {
+    editJobPost(id: $jobId, openPositions: $openPositions) {
+        _id
+        companyName
+        title
+        openPositions
+        description
+        datePosted
+        minSalary
+        maxSalary
+        skillSet
+        workExperience
+    }
+}
+`;
+
+export const REMOVE_JOB = gql`
+mutation removeJobPost($jobId: ID!) {
+    removeJobPost(jobId: $jobId) {
+        _id
+        companyName
+        title
+        openPositions
+        description
+        datePosted
+        minSalary
+        maxSalary
+        skillSet
+        workExperience
+    }
+}
+`;
