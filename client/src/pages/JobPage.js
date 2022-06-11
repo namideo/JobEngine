@@ -5,8 +5,10 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import { GET_JOB_ID } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import ApplicationForm from './ApplicationForm';
+import Auth from '../utils/auth';
 
 const JobPage = () => {
+  const isEmployer = Auth.isEmployer();
 
   const [showModal, setShowModal] = useState(false);
     const { jobId } = useParams();
@@ -45,6 +47,24 @@ const JobPage = () => {
               <p>Experience Required: {job.workExperience}</p>
               <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
               <p>Contact: {job.recruiter.email}</p>
+              {(job.applications && isEmployer && job.recruiter._id == Auth.getUserInfo()._id)?(
+                job.applications.map((app) => (
+                    <div key={app._id} className="card mb-5">
+                        <div className="card-header">
+                        <h5><strong>{app.applicant.username}</strong></h5>
+                        </div>
+                      <div className="card-body bg-light p-2">
+                        <p>Contact Info: {app.contactInfo}</p>
+                        <p>Notes: {app.notes}</p>
+                      </div>
+                      <div className="card-footer">
+                        <span style={{ fontSize: '1rem' }}>
+                        Can join by :{app.joiningDate}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+              ):(<span></span>)}
             </div>
             <div className="card-footer">
               <span style={{ fontSize: '1rem' }}>
@@ -53,13 +73,14 @@ const JobPage = () => {
             </div>
 
             <div>
-            <Link
+              {(!isEmployer)?(<Link
                   className="btn btn-primary btn-block btn-squared"
                   to={``}
                   onClick={() => setShowModal(true)}
                 >
                   Apply
-            </Link>
+            </Link>):(<span></span>)}
+            
             </div>
           {/* </div> */}
           <Modal
