@@ -37,7 +37,6 @@ const resolvers = {
         },
 
         getJobsPostedByUser: async (parent, args, context) => {
-            console.log(context.user._id);
             let jobs = await JobPost.find({
                 recruiter : ObjectId(context.user._id)
             }).populate('recruiter').populate({

@@ -8,6 +8,7 @@ import ApplicationForm from './ApplicationForm';
 import Auth from '../utils/auth';
 
 const JobPage = () => {
+
   const isEmployer = Auth.isEmployer();
 
   const [showModal, setShowModal] = useState(false);
@@ -26,19 +27,7 @@ const JobPage = () => {
 
     return (
         <div>
-      
-          {/* <div className="card mb-3"> */}
-            {/* <div className="card-header"> */}
-            {/* <div>
-            <Link
-                  className="btn btn-primary btn-block btn-squared"
-                  to={``}
-                  onClick={() => setShowModal(true)}
-                >
-                  Apply
-            </Link>
-            </div> */}
-            <div> {/* className="card-body bg-light p-2" */}
+            <div>
               <h5>{job.title}</h5>
               <p>Company: {job.companyName}</p>
               <p>Open Positions: {job.openPositions}</p>

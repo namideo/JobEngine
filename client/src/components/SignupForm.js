@@ -61,12 +61,22 @@ const SignupForm = () => {
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your signup!
         </Alert>
-
-        <ButtonGroup size="lg" className="mb-2">
-          <Button className="px-2 mr-5" variant="" name='role' onClick={handleInputChange} value="employer">I am an Employer</Button>
-          <Button className="px-2" variant="" name='role' onClick={handleInputChange} value="seeker">I am Job Seeker</Button>
-        </ButtonGroup>
-
+        <div class="ui form">
+          <div class="inline fields">
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name='role' onChange={handleInputChange} value="employer"></input>
+                <label>I am an Employer</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name='role' onChange={handleInputChange} value="seeker"></input>
+                <label>I am Job Seeker</label>
+              </div>
+            </div>
+          </div>
+        </div>
         <Form.Group>
           <Form.Label htmlFor='username'>Username</Form.Label>
           <Form.Control
