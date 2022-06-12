@@ -8,6 +8,7 @@ import JobPostForm from './pages/JobPostForm';
 import LandingPage from './components/LandingPage';
 import SearchResults from './components/SearchResults';
 import JobPage from './pages/JobPage';
+import Dashboard from './pages/Dashboard';
 
 
 // The apollo client provides authentication by using the following 'Header' method
@@ -57,6 +58,10 @@ function App() {
           <Route
           path="/JobPage/:jobId"
           element={<JobPage />}
+          />
+          <Route
+          path="/dashboard"
+          element={<Dashboard />}
           />
         </Routes>
       </>
