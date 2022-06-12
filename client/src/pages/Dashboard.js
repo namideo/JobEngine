@@ -26,7 +26,6 @@ function Dashboard() {
       setopenPositions(value)
   };
       const updateJobOpening = async (jobId) => {
-        //event.preventDefault();
 
         try {
             const { data } = await updateJob({
@@ -39,7 +38,6 @@ function Dashboard() {
     };
 
     const removeJobPost = async (jobId) => {
-      //event.preventDefault();
 
       try {
           const { data } = await removeJob({
@@ -70,6 +68,7 @@ function Dashboard() {
       {jobs &&
         jobs.map((job) => (
           <div key={job._id} className="card mb-5">
+                {(isEmployer)?(
               <div className="card-header">
                 {(editMode)?(
               <Link
@@ -93,8 +92,9 @@ function Dashboard() {
                 >
                   Delete
             </Link>
-              
-              </div>
+              </div>):(
+                <div className="card-header"></div>
+              )}
             <div className="card-body bg-light p-2">
             <h5><strong>{job.title}</strong></h5>
               {isEmployer ? (
