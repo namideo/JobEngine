@@ -33,7 +33,7 @@ function SearchResults() {
       <Card.Group>
         {jobs &&
           jobs.map((job) => (
-            <Card key={job._id} style={{ width: '32%'}} color='blue'>
+            <Card className='customCard' key={job._id} style={{ width: '32%'}} color='blue'>
               <Card.Content>
                 <Card.Header>
                   <h3><strong>{job.title}</strong></h3>

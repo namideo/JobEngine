@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import SearchForm from './SearchForm';
 
 import { GET_JOBPOSTINGS } from '../utils/queries';
-import '../styles/LandingPage.css';
+import '../styles/CustomStyle.css';
 import { Image } from 'semantic-ui-react'
 
 import image from '../images/homepage_6.jpg'

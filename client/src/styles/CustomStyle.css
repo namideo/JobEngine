@@ -52,3 +52,26 @@ h2.ui.header {
 .custombtn{
     margin: 20px;
 }
+
+.ui.customGrid {
+    margin: 0px;
+    padding: 0px;
+}
+
+.ui.grid>.row {
+    padding: 0px;
+}
+
+.ui.customContainer{
+    /* border: 1px solid gray; */
+    padding: 10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+/* .customCard {
+  transition: transform .2s; 
+}
+
+.customCard:hover {
+  transform: scale(1.1); 
+} */

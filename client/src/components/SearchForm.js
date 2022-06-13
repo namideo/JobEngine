@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Header, Icon } from 'semantic-ui-react'
-import '../styles/LandingPage.css';
+import '../styles/CustomStyle.css';
 
 function SearchForm(props) {
   return (

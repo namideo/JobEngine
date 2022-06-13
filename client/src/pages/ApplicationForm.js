@@ -30,7 +30,7 @@ const ApplicationForm = (props) => {
             const { data } = await addApplication({
                 variables: { 'jobId': props.jobId, ...appFormData },
             });
-            window.location.assign('/');
+            window.location.assign('/dashboard');
         } catch (err) {
             console.error(err);
         }
