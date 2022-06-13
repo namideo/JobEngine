@@ -1,6 +1,7 @@
 const { User, JobPost, Application } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const {ObjectId} = require('mongodb').ObjectId;
 
 const resolvers = {
     Query: {
@@ -33,6 +34,30 @@ const resolvers = {
             return await JobPost.find({
                 $or: [{ title: regex }, { description: regex }],
             }).populate('recruiter');
+        },
+
+        getJobsPostedByUser: async (parent, args, context) => {
+            let jobs = await JobPost.find({
+                recruiter : ObjectId(context.user._id)
+            }).populate('recruiter').populate({
+                path: 'applications',
+                populate: { path :'applicant' }
+            });
+
+            return jobs;
+        },
+
+        getJobsAppliedByUser: async (parent, args, context) => {
+
+            let jobs =  await JobPost.find({}).populate('recruiter').populate({
+                 path: 'applications',
+                 populate: { path :'applicant' }
+             });
+
+            let appliedJobs = jobs.filter(function(e){
+                return e.applications.filter(a=>a.applicant._id == context.user._id).length > 0;
+            });
+            return appliedJobs;
         },
 
     },
@@ -92,7 +117,32 @@ const resolvers = {
                 return application;
             }
             throw new AuthenticationError("You need to be logged in!");
-        }
+        },
+
+        // Edit a new job post
+        editJobPost: async (parent, {id, openPositions}, context) => {
+            if (context.user) {
+                const jobPost = await JobPost.findOneAndUpdate(
+                    { _id: id },
+                    { openPositions },
+                    {
+                        new: true,
+                        runValidators: true,
+                    }
+                    );
+                return jobPost;
+            }
+            throw new AuthenticationError("You need to be logged in!");
+        },
+
+        // Delete job post
+        removeJobPost: async (parent, {jobId}, context) => {
+            if (context.user) {
+                const jobPost = await JobPost.findOneAndDelete({ _id: jobId });
+                return jobPost;
+            }
+            throw new AuthenticationError("You need to be logged in!");
+        },
     }
 };
 

@@ -15,15 +15,9 @@ function SearchForm(props) {
           placeholder="Job title or keyword"
           id="search"
         />
-        {/* <button
-          onClick={props.handleFormSubmit}
-          className="btn btn-primary"
-          type="submit"
-        > */}
-          {/* Search
-        </button> */}
+        
         <Link
-              className="btn btn-primary btn-block btn-squared"
+              className="searchbtn btn btn-primary btn-block btn-squared"
               to={`/searchResults/${props.value}`}
             >
               Search Jobs

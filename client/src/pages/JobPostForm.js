@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import { Container } from 'semantic-ui-react'
 import { useMutation } from '@apollo/client';
 import { POST_JOB } from '../utils/mutations';
 
@@ -34,7 +34,7 @@ const JobPostForm = () => {
           input: { ...jobFormData, ["openPositions"]: parseInt(jobFormData.openPositions), ["minSalary"]: parseInt(jobFormData.minSalary), ["maxSalary"]: parseInt(jobFormData.maxSalary) },
          }
       });      
-      window.location.assign('/');
+      window.location.assign('/dashboard');
     } catch (err) {
       console.error(err);
     }
@@ -44,7 +44,8 @@ const JobPostForm = () => {
     });
   };
     return (
-      <>
+      <div className='jobForm'>
+      <Container>
         <Form noValidate onSubmit={handleFormSubmit}>
         <Form.Group>
           <Form.Label htmlFor='companyName'>Company Name</Form.Label>
@@ -131,12 +132,14 @@ const JobPostForm = () => {
         </Form.Group>
 
         <Button
+          className="submitbtn"
           type='submit'
           variant='success'>
           Submit
         </Button>
       </Form>
-      </>
+      </Container>
+      </div>
     );
 };
 

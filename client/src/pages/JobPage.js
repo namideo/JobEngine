@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { Navbar, Nav, Modal, Tab } from 'react-bootstrap';
-import { Container, Grid, Image } from 'semantic-ui-react'
+import { Container, Header, Grid, Image } from 'semantic-ui-react'
 import { GET_JOB_ID } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import ApplicationForm from './ApplicationForm';
+import Auth from '../utils/auth';
 
 
 const JobPage = () => {
+
+  const isEmployer = Auth.isEmployer();
 
   const [showModal, setShowModal] = useState(false);
     const { jobId } = useParams();
@@ -28,38 +31,29 @@ const JobPage = () => {
       
         <div className='jobPage'>
           
-      
-          {/* <div className="card mb-3"> */}
-            {/* <div className="card-header"> */}
-            {/* <div>
-            <Link
-                  className="btn btn-primary btn-block btn-squared"
-                  to={``}
-                  onClick={() => setShowModal(true)}
-                >
-                  Apply
-            </Link>
-            </div> */}
 <Container>
-          <Grid divided='vertically'>
+<Grid divided='vertically'>
+
+        <Grid.Row centered columns> 
+          <Grid.Column width={11}><h1>{job.title}</h1></Grid.Column>
+          </Grid.Row>
             <Grid.Row centered columns={2}>
-              <Grid.Column width={5}>
+              <Grid.Column width={6}>
               <div> 
-                  <h3><strong>{job.title}</strong></h3>
-                  <p>Company: {job.companyName}</p>
-                  <p>Open Positions: {job.openPositions}</p>
-                  <p>Skill Set: {job.skillSet}</p>
-                  <p>Experience Required: {job.workExperience}</p>
-                  <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
+                  <p><strong>Company:</strong> {job.companyName}</p>
+                  <p><strong>Open Positions:</strong> {job.openPositions}</p>
+                  <p><strong>Desired Skills:</strong> {job.skillSet}</p>
+                  <p><strong>Experience Required:</strong> {job.workExperience}</p>
+                  <p><strong>Salary:</strong> ${job.minSalary} to ${job.maxSalary}</p>
                 </div>
               </Grid.Column>
               <Grid.Column width={5}>
-                  <p>Description: {job.description}</p>
+                  <p>{job.description}</p>
               </Grid.Column>
             </Grid.Row>
 
             <Grid.Row centered columns={2}>
-              <Grid.Column width={5}>
+              <Grid.Column width={6}>
                   <h3><strong>Contact Recruiter: </strong></h3><p>{job.recruiter.email}</p>
               </Grid.Column>
 

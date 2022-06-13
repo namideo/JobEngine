@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -12,10 +13,11 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar className='Navbar'  expand='lg'> 
+      {/* bg='dark' variant='dark' */}
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            JobVerse
+            <h1>JobVerse <i className="fa-solid fa-briefcase"></i></h1>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
@@ -26,12 +28,13 @@ const AppNavbar = () => {
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/saved'>
-                    Profile
+                  <Nav.Link as={Link} to='/dashboard'>
+                    Dashboard
                   </Nav.Link>
+                  {Auth.isEmployer()?(
                   <Nav.Link as={Link} to='/postJob'>
                     Post a Job
-                  </Nav.Link>
+                  </Nav.Link>):null}
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
