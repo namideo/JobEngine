@@ -8,6 +8,7 @@ import Auth from '../utils/auth';
 
 import { Button, Card, Icon } from 'semantic-ui-react';
 import { Container, Header } from 'semantic-ui-react';
+import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
 
 function SearchResults() {
 
@@ -20,36 +21,38 @@ function SearchResults() {
   const jobs = data?.jobPostings || [];
 
   if (loading) {
-    return <h2>LOADING...</h2>;
+    return <Header as='h1'> LOADING...</Header>;
+    
   }
 
   return (
     <Container style={{ margin: 20 }}>
-      <Header as='h3' block style={{ backgroundColor: '#CBE6EF'}}>
+      <Header as='h3' block style={{ background: '#B7CFDC', color: '#385E72'}}>
         Results
       </Header>
       <Card.Group>
         {jobs &&
           jobs.map((job) => (
-            <Card key={job._id}>
+            <Card className='customCard' key={job._id} style={{ width: '32%'}} color='blue'>
               <Card.Content>
                 <Card.Header>
-                  <h5><strong>{job.title}</strong></h5>
+                  <h3><strong>{job.title}</strong></h3>
                 </Card.Header>
                 <Card.Meta>
                   Posted on: {job.datePosted}
                 </Card.Meta>
-                <Card.Description>
+                <Card.Description style={{fontSize: '1rem'}}>
                   <br></br>
-                  <p>Company: {job.companyName}</p>
-                  <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
-                  <p>{job.description}</p>
-                  <p>Open Positions: {job.openPositions}</p>
+                  <p><strong>Company: </strong> {job.companyName}</p>
+                  <p><strong>Salary: </strong>${job.minSalary} to ${job.maxSalary}</p>
+                  <p><strong>Description: </strong>{job.description}</p>
+                  <p><strong>Open Positions: </strong>{job.openPositions}</p>
                 </Card.Description>
               </Card.Content>
               {(Auth.loggedIn())?(
               <Card.Content extra>
-                <Button animated basic color='blue' primary as={Link} to={`/JobPage/${job._id}`}>
+                {/* basic color='#B5B2B0' */}
+                <Button animated style={{ background: '#385E72', color: 'white'}} primary as={Link} to={`/JobPage/${job._id}`}>
                   <Button.Content visible>Details</Button.Content>
                   <Button.Content hidden>
                     <Icon name='arrow right' />

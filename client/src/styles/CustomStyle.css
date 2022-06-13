@@ -1,0 +1,77 @@
+
+.ui.fluid.image {
+    position: relative;
+    background-size: "cover";
+    height: 90vh;
+    margin-top: 0px;
+    font-size: 50px;
+    background-repeat: no-repeat;
+}
+
+.overlay {
+    position: absolute;
+    height: 92vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-top: 50px;
+    background: rgba(225, 223, 223, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.custom-content {
+    top: 30%;
+    left: 35%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1.ui.header{
+    padding: 5px;
+    font-size: 6rem;
+    color: #385E72;
+    border: 5px solid white;
+}
+
+h2.ui.header {
+    color: white;
+}
+
+.search-form {
+    background-color: #F0F2F3;
+}
+
+.form-field,
+.custombtn{
+    margin: 20px;
+}
+
+.ui.customGrid {
+    margin: 0px;
+    padding: 0px;
+}
+
+.ui.grid>.row {
+    padding: 0px;
+}
+
+.ui.customContainer{
+    /* border: 1px solid gray; */
+    padding: 10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+/* .customCard {
+  transition: transform .2s; 
+}
+
+.customCard:hover {
+  transform: scale(1.1); 
+} */

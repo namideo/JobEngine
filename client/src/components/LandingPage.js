@@ -4,8 +4,10 @@ import { useQuery } from '@apollo/client';
 import SearchForm from './SearchForm';
 
 import { GET_JOBPOSTINGS } from '../utils/queries';
+import '../styles/CustomStyle.css';
+import { Image } from 'semantic-ui-react'
 
-import image from '../images/Image2.jpeg'
+import image from '../images/homepage_6.jpg'
 
 const LandingPage = () => {
   
@@ -33,12 +35,13 @@ const LandingPage = () => {
     
     return (
         <div> 
-        <img className="hero" src={image} alt="hero"></img>
-        <SearchForm
-              value={search}
-              handleInputChange={handleInputChange}
-              handleFormSubmit={handleFormSubmit}
-            />
+        <Image src={image} fluid/>
+          <div className='overlay'></div>
+          <SearchForm
+            value={search}
+            handleInputChange={handleInputChange}
+            handleFormSubmit={handleFormSubmit}
+          />
         </div>
     );
 }

@@ -1,5 +1,6 @@
 body {
   font-family: 'Rubik', sans-serif;
+  /* font-family: 'Roboto Slab', serif; */
   background-color: #F0F2F3;
 }
 
@@ -39,6 +40,8 @@ body {
   width: 150px;
   margin-left: 50px;
   margin-top: 30px;
+  background: #385E72;
+  color: 'white';
 }
 
 .Results {
@@ -66,3 +69,8 @@ h4 {
 .card-header {
   border: none;
 }
+
+/* button {
+  background: #385E72;
+  color: 'white';
+} */
