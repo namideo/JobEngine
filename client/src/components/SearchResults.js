@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { GET_JOBPOSTINGS } from '../utils/queries';
 import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
+import Auth from '../utils/auth';
 
 import { Button, Card, Icon } from 'semantic-ui-react';
 import { Container, Header } from 'semantic-ui-react';
@@ -48,6 +49,7 @@ function SearchResults() {
                   <p><strong>Open Positions: </strong>{job.openPositions}</p>
                 </Card.Description>
               </Card.Content>
+              {(Auth.loggedIn())?(
               <Card.Content extra>
                 {/* basic color='#B5B2B0' */}
                 <Button animated style={{ background: '#385E72', color: 'white'}} primary as={Link} to={`/JobPage/${job._id}`}>
@@ -57,6 +59,7 @@ function SearchResults() {
                   </Button.Content>
                 </Button>
               </Card.Content>
+              ):null}
             </Card>
           ))}
       </Card.Group>

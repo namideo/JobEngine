@@ -15,6 +15,7 @@ const AppNavbar = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <Menu pointing style={{ background: '#385E72' }}>
         <Menu.Item position='right' style={{ color: 'white', fontSize: '1.2rem' }}
           name='Explore Jobs'
@@ -44,6 +45,38 @@ const AppNavbar = () => {
         )}
       </Menu>
 
+=======
+      <Navbar bg='dark' variant='dark' expand='lg'>
+        <Container fluid>
+          <Navbar.Brand as={Link} to='/'>
+            JobVerse
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls='navbar' />
+          <Navbar.Collapse id='navbar'>
+            <Nav className='ml-auto'>
+              <Nav.Link as={Link} to='/'>
+                Explore Jobs
+              </Nav.Link>
+              {/* if user is logged in show saved books and logout */}
+              {Auth.loggedIn() ? (
+                <>
+                  <Nav.Link as={Link} to='/dashboard'>
+                    Dashboard
+                  </Nav.Link>
+                  {Auth.isEmployer()?(
+                  <Nav.Link as={Link} to='/postJob'>
+                    Post a Job
+                  </Nav.Link>):null}
+                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                </>
+              ) : (
+                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+>>>>>>> 9e85eb15c28fa71f1941c47571fd6cee37f7fba5
       {/* set modal data up */}
       <Modal
         size='lg'
