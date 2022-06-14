@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
 import Auth from '../utils/auth';
 
+import { Button, Card, Icon } from 'semantic-ui-react';
+import { Container, Header } from 'semantic-ui-react';
+
 function Dashboard() {
   const [editMode, setEditMode] = useState(false);
   const [openPositions, setopenPositions] = useState('');
@@ -56,20 +59,24 @@ function Dashboard() {
 
     return (
 
-  <div className='Results'>
-          <p className="jobResults">
+      <Container style={{ margin: 60 }}>
+      <Header as='h2' block style={{ backgroundColor: '#CBE6EF', color: '#385E72' }}><p>
           {isEmployer ? (
          <strong>Jobs Posted</strong>
         ) : (
             <strong>Applied Jobs</strong>
         )}
             </p>
-    <div>
+          </Header>
+          
+    <Card.Group>
       {jobs &&
         jobs.map((job) => (
-          <div key={job._id} className="card mb-5">
+          <Card key={job._id} >
+            <Card.Content>
+            <Card.Header>
                 {(isEmployer)?(
-              <div className="card-header">
+              <div >
                 {(editMode)?(
               <Link
                   className="btn btn-primary btn-block btn-squared"
@@ -92,10 +99,12 @@ function Dashboard() {
                 >
                   Delete
             </Link>
-              </div>):(
-                <div className="card-header"></div>
+            </div>
+              ):(
+                <div ></div>
               )}
-            <div className="card-body bg-light p-2">
+              </Card.Header>
+            <Card.Description>
             <h5><strong>{job.title}</strong></h5>
               {isEmployer ? (
          <p>Applications Count: {job.applications.length}</p>
@@ -111,7 +120,7 @@ function Dashboard() {
         ) : (
           <p>Open Positions: {job.openPositions}</p>
         )}
-            </div>
+            
             <div className="card-footer">
               <span style={{ fontSize: '1rem' }}>
                 Posted on: {job.datePosted}
@@ -123,10 +132,12 @@ function Dashboard() {
                   Details
             </Link>
             </div>
-          </div>
+            </Card.Description>
+            </Card.Content>
+          </Card>
         ))}
-    </div>
-          </div>
+    </Card.Group>
+          </Container>
 
     )
 }

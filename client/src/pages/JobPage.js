@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar, Nav, Modal, Tab } from 'react-bootstrap';
+import { Container, Grid } from 'semantic-ui-react'
 import { GET_JOB_ID } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import ApplicationForm from './ApplicationForm';
@@ -26,31 +27,70 @@ const JobPage = () => {
     }
 
     return (
-        <div>
-            <div>
-              <h5>{job.title}</h5>
-              <p>Company: {job.companyName}</p>
-              <p>Open Positions: {job.openPositions}</p>
-              <p>Description: {job.description}</p>
-              <p>Skill Set: {job.skillSet}</p>
-              <p>Experience Required: {job.workExperience}</p>
-              <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
-              <p>Contact: {job.recruiter.email}</p>
+        <div class='jobPage'>
+
+          <Container>
+            <Grid divided='vertically'>
+
+        <Grid.Row centered columns> 
+          <Grid.Column width={11}><h1>{job.title}</h1></Grid.Column>
+          </Grid.Row>
+            <Grid.Row centered columns={2}>
+              <Grid.Column width={6}>
+              <div> 
+                  <p><strong>Company:</strong> {job.companyName}</p>
+                  <p><strong>Open Positions:</strong> {job.openPositions}</p>
+                  <p><strong>Desired Skills:</strong> {job.skillSet}</p>
+                  <p><strong>Experience Required:</strong> {job.workExperience}</p>
+                  <p><strong>Salary:</strong> ${job.minSalary} to ${job.maxSalary}</p>
+                </div>
+              </Grid.Column>
+
+              <Grid.Column width={5}>
+                  <p>{job.description}</p>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row centered columns={2}>
+              <Grid.Column width={6}>
+                  <h3><strong>Contact Recruiter: </strong></h3><p>{job.recruiter.email}</p>
+              </Grid.Column>
+
+            <Grid.Column width={5}>
+              <div>
+              {(!isEmployer)?(<Link
+                  className="btn btn-primary btn-block btn-squared"
+                  to={``}
+                  onClick={() => setShowModal(true)}
+                >
+                  Apply
+            </Link>):(<span></span>)}
+            
+            </div>
+            </Grid.Column>
+            </Grid.Row>
+            </Grid>
+
+          <div className="applicants">
+
+          
               {(job.applications && isEmployer && job.recruiter._id == Auth.getUserInfo()._id)?(
                 job.applications.map((app) => (
+                    
                     <div key={app._id} className="card mb-5">
+                    
                         <div className="card-header">
                         <h5><strong>{app.applicant.username}</strong></h5>
                         </div>
-                      <div className="card-body bg-light p-2">
-                        <p>Contact Info: {app.contactInfo}</p>
-                        <p>Notes: {app.notes}</p>
-                      </div>
-                      <div className="card-footer">
-                        <span style={{ fontSize: '1rem' }}>
-                        Can join by :{app.joiningDate}
-                        </span>
-                      </div>
+                        <div className="card-body bg-light p-2">
+                          <p>Contact Info: {app.contactInfo}</p>
+                          <p>Notes: {app.notes}</p>
+                        </div>
+                        <div className="card-footer">
+                          <span style={{ fontSize: '1rem' }}>
+                          Can join by :{app.joiningDate}
+                          </span>
+                        </div>
                     </div>
                   ))
               ):(<span></span>)}
@@ -61,17 +101,8 @@ const JobPage = () => {
               </span>
             </div>
 
-            <div>
-              {(!isEmployer)?(<Link
-                  className="btn btn-primary btn-block btn-squared"
-                  to={``}
-                  onClick={() => setShowModal(true)}
-                >
-                  Apply
-            </Link>):(<span></span>)}
             
-            </div>
-          {/* </div> */}
+
           <Modal
         size='lg'
         show={showModal}
@@ -89,6 +120,8 @@ const JobPage = () => {
             </Tab.Content>
           </Modal.Body>
       </Modal>
+      
+    </Container>
     </div>
     
     )

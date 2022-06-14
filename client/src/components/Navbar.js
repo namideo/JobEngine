@@ -15,6 +15,35 @@ const AppNavbar = () => {
 
   return (
     <>
+      {/* <Navbar className='Navbar'  expand='lg'> 
+        <Container fluid>
+          <Navbar.Brand as={Link} to='/'>
+            <h1>JobVerse <i className="fa-solid fa-briefcase"></i></h1>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls='navbar' />
+          <Navbar.Collapse id='navbar'>
+            <Nav className='ml-auto'>
+              <Nav.Link as={Link} to='/'>
+                Explore Jobs
+              </Nav.Link>
+              {Auth.loggedIn() ? (
+                <>
+                  <Nav.Link as={Link} to='/dashboard'>
+                    Dashboard
+                  </Nav.Link>
+                  {Auth.isEmployer()?(
+                  <Nav.Link as={Link} to='/postJob'>
+                    Post a Job
+                  </Nav.Link>):null}
+                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                </>
+              ) : (
+                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar> */}
       <Menu pointing style={{ background: '#385E72' }}>
         <Menu.Item position='right' style={{ color: 'white', fontSize: '1.2rem' }}
           name='Explore Jobs'
