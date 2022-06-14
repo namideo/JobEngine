@@ -37,7 +37,8 @@ const JobPostForm = () => {
           input: { ...jobFormData, ["openPositions"]: parseInt(jobFormData.openPositions), ["minSalary"]: parseInt(jobFormData.minSalary), ["maxSalary"]: parseInt(jobFormData.maxSalary) },
         }
       });
-      window.location.assign('/dashboard');
+      // window.location.assign('/dashboard');
+      window.location.href('/dashboard');
     } catch (err) {
       console.error(err);
     }
