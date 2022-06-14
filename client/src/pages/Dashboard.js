@@ -31,6 +31,12 @@ function Dashboard() {
     const { name, value } = event.target;
     setopenPositions(value)
   };
+
+  const handleUpdateChange = (jobId) => {
+    setactJobId(jobId);
+    setEditMode(true);
+  };
+
   const updateJobOpening = async (jobId) => {
 
     try {
@@ -85,7 +91,7 @@ function Dashboard() {
                 <Card.Header>
                   {(isEmployer) ? (
                     <div >
-                      {(editMode) ? (
+                      {(editMode && actJobId == job._id) ? (
                         <Link
                           className="btn btn-primary btn-block btn-squared"
                           to={``}
@@ -96,7 +102,7 @@ function Dashboard() {
                         <Link
                           className="btn btn-primary btn-block btn-squared"
                           to={``}
-                          onClick={() => setEditMode(true)}
+                          onClick={() => {handleUpdateChange(job._id)}}
                         >
                           Update Openings
                         </Link>)}
@@ -123,7 +129,7 @@ function Dashboard() {
                   <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
                   <p>{job.description}</p>
 
-                  {editMode ? (
+                  {(editMode && actJobId == job._id) ? (
                     <p>Open Positions: <input type="number" name="openPositions" onChange={handleInputChange} /></p>
                   ) : (
                     <p>Open Positions: {job.openPositions}</p>
