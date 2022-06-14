@@ -6,10 +6,12 @@ import { UPDATE_JOB, REMOVE_JOB } from '../utils/mutations';
 import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
 import Auth from '../utils/auth';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
+
 
 function Dashboard() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
   const [openPositions, setopenPositions] = useState('');
   const [actJobId, setactJobId] = useState('');
@@ -34,7 +36,8 @@ function Dashboard() {
                 variables: { 'jobId': jobId, 'openPositions': parseInt(openPositions) },
             });
             // window.location.assign('/dashboard');
-            navigate("/dashboard", { replace: true });
+            // navigate("/dashboard", { replace: true });
+            <Redirect to='/dashboard' />
         } catch (err) {
             console.error(err);
         }
@@ -48,7 +51,8 @@ function Dashboard() {
           });
           // window.location.assign('/dashboard');
           // navigate("/dashboard");
-          navigate("/dashboard", { replace: true });
+          // navigate("/dashboard", { replace: true });
+          <Redirect to='/dashboard' />
       } catch (err) {
           console.error(err);
       }
