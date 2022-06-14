@@ -38,7 +38,7 @@ const JobPostForm = () => {
         }
       });
       // window.location.assign('/dashboard');
-      window.location.href('/dashboard');
+      window.location.href = '/dashboard';
     } catch (err) {
       console.error(err);
     }
