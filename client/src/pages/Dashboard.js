@@ -60,7 +60,7 @@ function Dashboard() {
     return (
 
       <Container style={{ margin: 60 }}>
-      <Header as='h2' block style={{ backgroundColor: '#CBE6EF'}}><p>
+      <Header as='h2' block style={{ backgroundColor: '#CBE6EF', color: '#385E72' }}><p>
           {isEmployer ? (
          <strong>Jobs Posted</strong>
         ) : (

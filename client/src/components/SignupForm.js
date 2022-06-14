@@ -61,16 +61,16 @@ const SignupForm = () => {
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your signup!
         </Alert>
-        <div class="ui form">
-          <div class="inline fields">
-            <div class="field">
-              <div class="ui radio checkbox">
+        <div className="ui form">
+          <div className="inline fields">
+            <div className="field">
+              <div className="ui radio checkbox">
                 <input type="radio" name='role' onChange={handleInputChange} value="employer"></input>
                 <label>I am an Employer</label>
               </div>
             </div>
-            <div class="field">
-              <div class="ui radio checkbox">
+            <div className="field">
+              <div className="ui radio checkbox">
                 <input type="radio" name='role' onChange={handleInputChange} value="seeker"></input>
                 <label>I am Job Seeker</label>
               </div>
@@ -118,6 +118,7 @@ const SignupForm = () => {
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
+          style={{background: '#385E72'}}
           variant='success'>
           Submit
         </Button>

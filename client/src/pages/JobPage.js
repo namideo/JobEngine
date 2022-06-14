@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { Navbar, Nav, Modal, Tab } from 'react-bootstrap';
-import { Container, Header, Grid, Image } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 import { GET_JOB_ID } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import ApplicationForm from './ApplicationForm';
 import Auth from '../utils/auth';
-
 
 const JobPage = () => {
 
@@ -28,11 +27,10 @@ const JobPage = () => {
     }
 
     return (
-      
-        <div className='jobPage'>
-          
-<Container>
-<Grid divided='vertically'>
+        <div class='jobPage'>
+
+          <Container>
+            <Grid divided='vertically'>
 
         <Grid.Row centered columns> 
           <Grid.Column width={11}><h1>{job.title}</h1></Grid.Column>
@@ -47,6 +45,7 @@ const JobPage = () => {
                   <p><strong>Salary:</strong> ${job.minSalary} to ${job.maxSalary}</p>
                 </div>
               </Grid.Column>
+
               <Grid.Column width={5}>
                   <p>{job.description}</p>
               </Grid.Column>
@@ -57,48 +56,73 @@ const JobPage = () => {
                   <h3><strong>Contact Recruiter: </strong></h3><p>{job.recruiter.email}</p>
               </Grid.Column>
 
-              {/* <Grid.Column>
-                <div>
-                  <span style={{ fontSize: '1rem' }}>
-                    Posted on: {job.datePosted}
-                  </span>
-                </div>
-              </Grid.Column> */}
-
-              <Grid.Column width={5}>
+            <Grid.Column width={5}>
               <div>
-                <Link
-                    className="btn btn-primary btn-block btn-squared"
-                    to={``}
-                    onClick={() => setShowModal(true)}
-                    >
-                    Apply
-                </Link>
+              {(!isEmployer)?(<Link
+                  className="btn btn-primary btn-block btn-squared"
+                  to={``}
+                  onClick={() => setShowModal(true)}
+                >
+                  Apply
+            </Link>):(<span></span>)}
+            
+            </div>
+            </Grid.Column>
+            </Grid.Row>
+            </Grid>
+
+          <div className="applicants">
+
+          
+              {(job.applications && isEmployer && job.recruiter._id == Auth.getUserInfo()._id)?(
+                job.applications.map((app) => (
+                    
+                    <div key={app._id} className="card mb-5">
+                    
+                        <div className="card-header">
+                        <h5><strong>{app.applicant.username}</strong></h5>
+                        </div>
+                        <div className="card-body bg-light p-2">
+                          <p>Contact Info: {app.contactInfo}</p>
+                          <p>Notes: {app.notes}</p>
+                        </div>
+                        <div className="card-footer">
+                          <span style={{ fontSize: '1rem' }}>
+                          Can join by :{app.joiningDate}
+                          </span>
+                        </div>
                     </div>
-                <Modal
-                    size='lg'
-                    show={showModal}
-                    onHide={() => setShowModal(false)}
-                    aria-labelledby='application-modal'>
-                    {/* tab container to do either signup or login component */}
-                      <Modal.Header closeButton>
-                        <Modal.Title id='application-modal'>
-                        <h5>Please provide following details: </h5>
-                        </Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <Tab.Content>
-                            <ApplicationForm handleModalClose={() => setShowModal(false)} jobId= { jobId } />
-                        </Tab.Content>
-                      </Modal.Body> 
-                </Modal>
-              </Grid.Column>
-          </Grid.Row>
-      </Grid>
-            </Container>
+                  ))
+              ):(<span></span>)}
+            </div>
+            <div className="card-footer">
+              <span style={{ fontSize: '1rem' }}>
+                Posted on: {job.datePosted}
+              </span>
             </div>
 
             
+
+          <Modal
+        size='lg'
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby='application-modal'>
+        {/* tab container to do either signup or login component */}
+          <Modal.Header closeButton>
+            <Modal.Title id='application-modal'>
+            <h5>Please provide following details: </h5>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+                <ApplicationForm handleModalClose={() => setShowModal(false)} jobId= { jobId } />
+            </Tab.Content>
+          </Modal.Body>
+      </Modal>
+      
+    </Container>
+    </div>
     
     )
 }

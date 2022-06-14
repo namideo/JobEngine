@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-
+import { Button, Header, Icon } from 'semantic-ui-react'
+import { Input, Menu, Segment } from 'semantic-ui-react'
+// import { Tab } from 'semantic-ui-react'
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -13,8 +15,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar className='Navbar'  expand='lg'> 
-      {/* bg='dark' variant='dark' */}
+      {/* <Navbar className='Navbar'  expand='lg'> 
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             <h1>JobVerse <i className="fa-solid fa-briefcase"></i></h1>
@@ -25,7 +26,6 @@ const AppNavbar = () => {
               <Nav.Link as={Link} to='/'>
                 Explore Jobs
               </Nav.Link>
-              {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/dashboard'>
@@ -43,7 +43,37 @@ const AppNavbar = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
+      </Navbar> */}
+      <Menu pointing style={{ background: '#385E72' }}>
+        <Menu.Item position='right' style={{ color: 'white', fontSize: '1.2rem' }}
+          name='Explore Jobs'
+          as={Link} to='/'
+        />
+
+        {Auth.loggedIn() ? (
+          <>
+            <Menu.Item style={{ color: 'white', fontSize: '1.2rem' }}
+              name='Dashboard'
+              as={Link} to='/dashboard'
+            />
+            {Auth.isEmployer() ? (
+              <Menu.Item style={{ color: 'white', fontSize: '1.2rem' }}
+                name='Post a Job'
+                as={Link} to='/postJob'
+              />) : null}
+            <Menu.Item style={{ color: 'white', fontSize: '1.2rem' }}
+              name='Logout'
+              onClick={Auth.logout}
+            />
+          </>
+        ) : (
+          <Menu.Item style={{ color: 'white', fontSize: '1.2rem' }}
+            name="Login or Sign Up"
+            onClick={() => setShowModal(true)}
+          />
+        )}
+      </Menu>
+
       {/* set modal data up */}
       <Modal
         size='lg'

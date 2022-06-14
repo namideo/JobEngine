@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Header, Icon } from 'semantic-ui-react'
+import '../styles/CustomStyle.css';
 
 function SearchForm(props) {
   return (
-    <div className="content">
+    <div className="custom-content">
+      <Header as='h1'>Jobverse</Header>
+      <Header as='h2'>Find your next job here!</Header>
     <form>
       <div className="search-form">
         <input
@@ -15,9 +19,9 @@ function SearchForm(props) {
           placeholder="Job title or keyword"
           id="search"
         />
-        
+
         <Link
-              className="searchbtn btn btn-primary btn-block btn-squared"
+              className="btn btn-primary btn-block btn-squared custombtn"
               to={`/searchResults/${props.value}`}
             >
               Search Jobs

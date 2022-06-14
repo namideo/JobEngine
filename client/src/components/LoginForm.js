@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
+// import { Button, Checkbox, Form } from 'semantic-ui-react'
+
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -11,7 +13,7 @@ const LoginForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [login, {error, data}] = useMutation(LOGIN_USER);
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -31,11 +33,11 @@ const LoginForm = () => {
     try {
 
       const { data } = await login({
-        variables: {...userFormData}
+        variables: { ...userFormData }
       });
-      
+
       Auth.login(data.login);
-      
+
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -81,6 +83,7 @@ const LoginForm = () => {
         </Form.Group>
         <Button
           disabled={!(userFormData.email && userFormData.password)}
+          style={{background: '#385E72'}}
           type='submit'
           variant='success'>
           Submit
