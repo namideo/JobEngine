@@ -34,7 +34,7 @@ function Dashboard() {
                 variables: { 'jobId': jobId, 'openPositions': parseInt(openPositions) },
             });
             // window.location.assign('/dashboard');
-            navigate("/dashboard");
+            navigate("/dashboard", { replace: true });
         } catch (err) {
             console.error(err);
         }
@@ -47,7 +47,8 @@ function Dashboard() {
               variables: { 'jobId': jobId },
           });
           // window.location.assign('/dashboard');
-          navigate("/dashboard");
+          // navigate("/dashboard");
+          navigate("/dashboard", { replace: true });
       } catch (err) {
           console.error(err);
       }
