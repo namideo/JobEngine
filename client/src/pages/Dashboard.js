@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
 import Auth from '../utils/auth';
 import { useNavigate } from "react-router-dom";
-// import { Redirect } from 'react-router-dom';
 
 
 function Dashboard() {
