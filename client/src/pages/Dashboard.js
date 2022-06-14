@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
 import Auth from '../utils/auth';
 // import { useNavigate } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 
 function Dashboard() {
@@ -35,9 +35,9 @@ function Dashboard() {
             const { data } = await updateJob({
                 variables: { 'jobId': jobId, 'openPositions': parseInt(openPositions) },
             });
-            // window.location.assign('/dashboard');
+            window.location.reload(true);
             // navigate("/dashboard", { replace: true });
-            <Redirect to='/dashboard' />
+            // <Redirect to='/dashboard' />
         } catch (err) {
             console.error(err);
         }
@@ -50,9 +50,10 @@ function Dashboard() {
               variables: { 'jobId': jobId },
           });
           // window.location.assign('/dashboard');
+          window.location.reload(true);
           // navigate("/dashboard");
           // navigate("/dashboard", { replace: true });
-          <Redirect to='/dashboard' />
+          // <Redirect to='/dashboard' />
       } catch (err) {
           console.error(err);
       }
