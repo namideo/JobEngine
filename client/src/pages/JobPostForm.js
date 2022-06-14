@@ -4,6 +4,7 @@ import { Container, Header, Grid } from 'semantic-ui-react';
 
 import { useMutation } from '@apollo/client';
 import { POST_JOB } from '../utils/mutations';
+import { useNavigate } from "react-router-dom";
 
 import '../styles/CustomStyle.css';
 
@@ -11,6 +12,7 @@ import Auth from '../utils/auth';
 
 const JobPostForm = () => {
 
+  const navigate = useNavigate();
   const [jobFormData, setJobFormData] = useState({ companyName: '', title: '', openPositions: '', description: '', minSalary: '', maxSalary: '', skillSet: '', workExperience: '' });
 
   const [addJobPost, { error, data }] = useMutation(POST_JOB);
@@ -37,8 +39,10 @@ const JobPostForm = () => {
           input: { ...jobFormData, ["openPositions"]: parseInt(jobFormData.openPositions), ["minSalary"]: parseInt(jobFormData.minSalary), ["maxSalary"]: parseInt(jobFormData.maxSalary) },
         }
       });
+      navigate("/dashboard");
+
       // window.location.assign('/dashboard');
-      window.location.href = '/dashboard';
+      // window.location.href = '/dashboard';
     } catch (err) {
       console.error(err);
     }
