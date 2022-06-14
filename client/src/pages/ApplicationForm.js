@@ -3,9 +3,10 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
 import { APPLY_JOB } from '../utils/mutations';
+import { useNavigate } from "react-router-dom";
 
 const ApplicationForm = (props) => {
-
+    const navigate = useNavigate();
     const [appFormData, setAppFormData] = useState({ contactInfo: '', notes: '', joiningDate: '' });
 
     const [addApplication, { error, data }] = useMutation(APPLY_JOB);
@@ -30,7 +31,8 @@ const ApplicationForm = (props) => {
             const { data } = await addApplication({
                 variables: { 'jobId': props.jobId, ...appFormData },
             });
-            window.location.assign('/dashboard');
+            // window.location.assign('/dashboard');
+            navigate("/dashboard");
         } catch (err) {
             console.error(err);
         }

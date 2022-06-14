@@ -6,8 +6,10 @@ import { UPDATE_JOB, REMOVE_JOB } from '../utils/mutations';
 import { Link } from 'react-router-dom'
 import { SearchForm } from '../components/SearchForm';
 import Auth from '../utils/auth';
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
   const [openPositions, setopenPositions] = useState('');
   const [actJobId, setactJobId] = useState('');
@@ -31,7 +33,8 @@ function Dashboard() {
             const { data } = await updateJob({
                 variables: { 'jobId': jobId, 'openPositions': parseInt(openPositions) },
             });
-            window.location.assign('/dashboard');
+            // window.location.assign('/dashboard');
+            navigate("/dashboard");
         } catch (err) {
             console.error(err);
         }
@@ -43,7 +46,8 @@ function Dashboard() {
           const { data } = await removeJob({
               variables: { 'jobId': jobId },
           });
-          window.location.assign('/dashboard');
+          // window.location.assign('/dashboard');
+          navigate("/dashboard");
       } catch (err) {
           console.error(err);
       }
