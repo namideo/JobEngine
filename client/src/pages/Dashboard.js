@@ -9,6 +9,9 @@ import Auth from '../utils/auth';
 import { useNavigate } from "react-router-dom";
 
 
+import { Button, Card, Icon } from 'semantic-ui-react';
+import { Container, Header } from 'semantic-ui-react';
+
 function Dashboard() {
   const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
@@ -64,77 +67,86 @@ function Dashboard() {
 
   return (
 
-    <div className='Results'>
-      <p className="jobResults">
+    <Container style={{ margin: 60 }}>
+      <Header as='h2' block style={{ backgroundColor: '#CBE6EF', color: '#385E72' }}><p>
         {isEmployer ? (
           <strong>Jobs Posted</strong>
         ) : (
           <strong>Applied Jobs</strong>
         )}
       </p>
-      <div>
+      </Header>
+
+      <Card.Group>
         {jobs &&
           jobs.map((job) => (
-            <div key={job._id} className="card mb-5">
-              {(isEmployer) ? (
-                <div className="card-header">
-                  {(editMode) ? (
-                    <Link
-                      className="btn btn-primary btn-block btn-squared"
-                      to={``}
-                      onClick={() => updateJobOpening(job._id)}
-                    >
-                      Update
-                    </Link>) : (
-                    <Link
-                      className="btn btn-primary btn-block btn-squared"
-                      to={``}
-                      onClick={() => setEditMode(true)}
-                    >
-                      Update Openings
-                    </Link>)}
-                  <Link
-                    className="btn btn-primary btn-block btn-squared"
-                    to={``}
-                    onClick={() => removeJobPost(job._id)}
-                  >
-                    Delete
-                  </Link>
-                </div>) : (
-                <div className="card-header"></div>
-              )}
-              <div className="card-body bg-light p-2">
-                <h5><strong>{job.title}</strong></h5>
-                {isEmployer ? (
-                  <p>Applications Count: {job.applications.length}</p>
-                ) : (
-                  <p></p>
-                )}
-                <p>Company: {job.companyName}</p>
-                <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
-                <p>{job.description}</p>
+            <Card key={job._id} >
+              <Card.Content>
+                <Card.Header>
+                  {(isEmployer) ? (
+                    <div >
+                      {(editMode) ? (
+                        <Link
+                          className="btn btn-primary btn-block btn-squared"
+                          to={``}
+                          onClick={() => updateJobOpening(job._id)}
+                        >
+                          Update
+                        </Link>) : (
+                        <Link
+                          className="btn btn-primary btn-block btn-squared"
+                          to={``}
+                          onClick={() => setEditMode(true)}
+                        >
+                          Update Openings
+                        </Link>)}
+                      <Link
+                        className="btn btn-primary btn-block btn-squared"
+                        to={``}
+                        onClick={() => removeJobPost(job._id)}
+                      >
+                        Delete
+                      </Link>
+                    </div>
+                  ) : (
+                    <div ></div>
+                  )}
+                </Card.Header>
+                <Card.Description>
+                  <h5><strong>{job.title}</strong></h5>
+                  {isEmployer ? (
+                    <p>Applications Count: {job.applications.length}</p>
+                  ) : (
+                    <p></p>
+                  )}
+                  <p>Company: {job.companyName}</p>
+                  <p>Salary: ${job.minSalary} to ${job.maxSalary}</p>
+                  <p>{job.description}</p>
 
-                {editMode ? (
-                  <p>Open Positions: <input type="number" name="openPositions" onChange={handleInputChange} /></p>
-                ) : (
-                  <p>Open Positions: {job.openPositions}</p>
-                )}
-              </div>
-              <div className="card-footer">
-                <span style={{ fontSize: '1rem' }}>
-                  Posted on: {job.datePosted}
-                </span>
-                <Link
-                  className="btn btn-primary btn-block btn-squared"
-                  to={`/JobPage/${job._id}`}
-                >
-                  Details
-                </Link>
-              </div>
-            </div>
+                  {editMode ? (
+                    <p>Open Positions: <input type="number" name="openPositions" onChange={handleInputChange} /></p>
+                  ) : (
+                    <p>Open Positions: {job.openPositions}</p>
+                  )}
+
+                  <div className="card-footer">
+                    <span style={{ fontSize: '1rem' }}>
+                      Posted on: {job.datePosted}
+                    </span>
+                    <Link
+                      className="btn btn-primary btn-block btn-squared"
+                      to={`/JobPage/${job._id}`}
+                    >
+                      Details
+                    </Link>
+                  </div>
+                  {/* </div> */}
+                </Card.Description>
+              </Card.Content>
+             </Card>
           ))}
-      </div>
-    </div>
+      </Card.Group>
+    </Container>
 
   )
 }

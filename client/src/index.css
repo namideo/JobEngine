@@ -1,7 +1,24 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+h2 
+h3
+h4
+h5{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
   font-family: 'Rubik', sans-serif;
   /* font-family: 'Roboto Slab', serif; */
   background-color: #F0F2F3;
+}
+
+.Navbar{
+  height: 90px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .small {
@@ -20,7 +37,7 @@ body {
 .search-form {
   display:inline-flex;
   background-color: whitesmoke;
-  margin-top: 50px;
+  margin-top: 40px;
   margin-left: 2.5%;
   height: 100px;
   width: 95%;
@@ -35,8 +52,8 @@ body {
   height: 40px;
 }
 
-.btn {
-  height: 40px;
+.searchbtn {
+  height: 35px;
   width: 150px;
   margin-left: 50px;
   margin-top: 30px;
@@ -55,13 +72,8 @@ body {
   margin-bottom: 20px;
 }
 
-h4 {
-  padding: 50px;
-}
-
 .card {
   width: 400px;
-  margin-left:50px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -70,7 +82,34 @@ h4 {
   border: none;
 }
 
-/* button {
+.jobPage {
+  margin-top: 50px;
+}
+
+.jobForm {
+  padding: 100px;
+  width: 1000px;
+  margin-left: 100px;
+}
+
+.submitbtn {
+  height: 35px;
+  width: 150px;
+  margin-top: 30px;
+}
+
+.btn {
+  width: 150px;
+  height: 35px;
   background: #385E72;
   color: 'white';
-} */
+}
+
+i {
+  font-size: x-large
+}
+
+.applicants {
+  margin-top: 75px;
+  margin-left: 160px;
+}

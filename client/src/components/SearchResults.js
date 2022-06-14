@@ -27,7 +27,7 @@ function SearchResults() {
 
   return (
     <Container style={{ margin: 20 }}>
-      <Header as='h3' block style={{ background: '#B7CFDC', color: '#385E72'}}>
+      <Header as='h2' block style={{ background: '#B7CFDC', color: '#385E72'}}>
         Results
       </Header>
       <Card.Group>
