@@ -21,7 +21,7 @@ function Dashboard() {
   let isEmployer = Auth.isEmployer();
   let QUERY = isEmployer ? GET_JOBS_POSTED_BY_USER : GET_JOBS_APPLIED_BY_USER;
 
-  const { loading, data } = useQuery(QUERY);
+  const { loading, data } = useQuery(QUERY, {fetchPolicy: "no-cache"} );
   const jobs = isEmployer ? data?.getJobsPostedByUser : data?.getJobsAppliedByUser || [];
 
   const [updateJob, { errorUpdateJob, updatedJob }] = useMutation(UPDATE_JOB);
