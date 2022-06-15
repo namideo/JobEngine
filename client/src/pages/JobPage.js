@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import ApplicationForm from './ApplicationForm';
 import Auth from '../utils/auth';
 
+
 const JobPage = () => {
 
   const isEmployer = Auth.isEmployer();
@@ -88,7 +89,8 @@ const JobPage = () => {
                         </div>
                         <div className="card-footer">
                           <span style={{ fontSize: '1rem' }}>
-                          Can join by :{app.joiningDate}
+                          {/* Can join by :{(app.joiningDate)} */}
+                          Can join by : {new Intl.DateTimeFormat('en-US').format(app.joiningDate)}
                           </span>
                         </div>
                     </div>
